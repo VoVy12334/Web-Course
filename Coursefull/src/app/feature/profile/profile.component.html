@@ -1,0 +1,155 @@
+<!--
+<div class="container">
+  <div class="span3 well">
+    <div>
+      <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3K2g1OFWtc6zPtP3tGdhVvAfHvUcbO_DQRUVLLPUWl4a5pJXSt0Z-K5VfDakwfDX30WE&usqp=CAU" name="aboutme" width="140" height="140" class="img-circle"></a>
+      <h3>{{currentUser.username}}</h3>
+      <em>click my face for more</em>
+    </div>
+  </div>
+
+ 
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+                </div>
+            <div class="modal-body" *ngIf="currentUser; else loggedOut">
+                <div >
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3K2g1OFWtc6zPtP3tGdhVvAfHvUcbO_DQRUVLLPUWl4a5pJXSt0Z-K5VfDakwfDX30WE&usqp=CAU" name="aboutme" width="140" height="140" border="0" class="img-circle">
+                <h3 class="media-heading"> {{ currentUser.username }} </h3>
+                <span><strong>Email: {{ currentUser.email }} </strong></span><br>
+                <span *ngFor="let role of currentUser.roles"><strong>Roles: {{ role }} </strong></span>    
+                </div>
+                <hr>
+                
+            </div>
+            <div class="modal-footer">
+                <div>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+-->
+<div class="container emp-profile">
+  <form method="post">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-img">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+            alt="" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="profile-head">
+          <h5>
+            {{currentUser.username}}
+          </h5>
+         
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                aria-selected="true">About</a>
+            </li>
+          <!--  <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                aria-selected="false">Timeline</a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+  <!--  <div class="col-md-2">
+        <a type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" href="/feature/mod">Edit Profile</a>
+      </div> -->
+    </div> 
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-work" *ngIf="currentUser; else loggedOut">
+         
+          
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="tab-content profile-tab" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+              <div class="col-md-6" *ngIf="currentUser; else loggedOut">
+                <label>Name</label>
+              </div>
+                <div class="col-md-6">
+                  <p>{{currentUser.username}}</p>
+                </div>
+              </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Email</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{ currentUser.email }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Phone</label>
+              </div>
+              <div class="col-md-6">
+                <p>123 456 7890</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label></label>
+              </div>
+              <div class="col-md-6">
+                <p></p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="row">
+              <div class="col-md-6">
+                <label></label>
+              </div>
+              <div class="col-md-6">
+                <p></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label></label>
+              </div>
+              <div class="col-md-6">
+                <p></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label></label>
+              </div>
+              <div class="col-md-6">
+                <p></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label></label>
+              </div>
+              <div class="col-md-6">
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<ng-template #loggedOut>
+  Please login.
+</ng-template>

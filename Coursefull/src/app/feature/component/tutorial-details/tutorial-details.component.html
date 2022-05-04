@@ -1,0 +1,65 @@
+<div>
+  <body class="img js-fullheight">
+    <header>
+      <section class="ftco-section">
+        <div class="container app-container1">
+          <div class="row justify-content-center">
+
+            <div *ngIf="currentTutorial.id" class="edit-form col-md-6 text-left mb-5">
+              <h3>Course</h3>
+              <form #frAdd="ngForm" (ngSubmit)="onSubmitForm(frAdd)" autocomplete="false" novalidate>
+                <div class="form-group">
+                  <label for="title">Name Course</label>
+                  <input type="text" class="form-control" id="title" required="required"  [(ngModel)]="currentTutorial.title" name="title"
+                  #title="ngModel" />
+                    <span for="" class="lable lable-danger" *ngIf="title.pristine  && title.errors">Update invalid </span> 
+
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea type="text" class="form-control btndescr" id="description" [(ngModel)]="currentTutorial.description"
+                    name="description" #description="ngModel" required="required" ></textarea>
+                    <span for="" class="lable lable-danger" *ngIf="description.pristine  && description.errors"> Update invalid </span> 
+
+                </div>
+
+                <!-- <div class="form-group">
+        <label><strong>Status:</strong></label>
+        {{ currentTutorial.published ? "Published" : "Pending" }}
+      </div> -->
+              </form>
+
+              <!-- <button class="badge badge-primary mr-2" *ngIf="currentTutorial.published" (click)="updatePublished(false)">
+      UnPublish
+    </button>
+    <button *ngIf="!currentTutorial.published" class="badge badge-primary mr-2" (click)="updatePublished(true)">
+      Publish
+    </button> -->
+              <button type="submit" class="badge badge-success mb-2 btnUp" [disabled]="frAdd.pristine " (click)="updateTutorial(frAdd)">
+                Update
+              </button>
+              <button class="badge badge-danger mb-2 btnback" href="/feature/tutorials"
+                routerLink="/feature/tutorials">Back</button>
+              <!-- <button class="badge badge-danger mr-2" (click)="deleteTutorial()">
+      Delete
+    </button> -->
+
+              <p>{{ message }}</p>
+
+              <div></div>
+
+            </div>
+
+            <div *ngIf="!currentTutorial.id">
+              <br />
+              <p>Cannot access this Tutorial...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </header>
+  </body>
+</div>
+<ng-template #loggedOut>
+  Please login.
+</ng-template>

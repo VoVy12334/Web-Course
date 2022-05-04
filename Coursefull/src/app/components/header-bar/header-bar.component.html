@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light ">
+ 
+  <a class="navbar-brand" style=" color: #000;" href="/feature/home">LOGO</a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"  style=" color: #FFFF;"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto" routerLinkActive="active">
+
+     <!--<li class="nav-item active">
+        <a class="nav-link " href="/feature/home"><i class="fa fa-home" aria-hidden="true"></i>Home </a>
+      </li> --> 
+
+     <!-- <li class="nav-link" *ngIf="showAdminBoard">
+        <a class="" routerLink="/feature/admin">Admin Board</a>
+      </li>
+      <li class="nav-link" *ngIf="showModeratorBoard">
+        <a class="" routerLink="/feature/mod">Moderator Board</a>
+      </li>-->
+     <!-- <li class="nav-item ">
+          <a href="/feature/user" class="nav-link" *ngIf="isLoggedIn" routerLink="/user">User</a>
+        </li>  -->
+      <li class="nav-item">
+        <a href="/feature/tutorials" class="nav-link" *ngIf="tutorialss" routerLink="/tutorials">Courses</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a class="nav-link" href="/login" routerLink="login">SignIn/SignUp <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav " *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a class="nav-link" href="/feature/profile" routerLink="/profile">{{ username }}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()">LogOut</a>
+      </li>
+    </ul>
+
+
+  </div>
+</nav>

@@ -1,0 +1,331 @@
+<body>
+  <header class="header_container">
+    <div class="list row">
+      <div class="col-md-8 btn-sr">
+        <div>
+
+        </div>
+      </div>
+      <div class="col-md-12 app-container" *ngIf="currentTutorial; else loggedOut">
+        <h4>Courses List</h4>
+        <ul class="list-group task-list">
+          <div class="input-group mb-3 input-holder">
+              <!--<input  type="text" placeholder="Search Courses" class=" from-search form-control"
+                [(ngModel)]="title" />
+              <i class="search__icon fa fa-search" type="button" (click)="retrieveTutorials()"></i>-->
+              <input type="text" class="form-control from-search" placeholder="Search Courses" [(ngModel)]="title"
+              required="required"> 
+              <div class="input-group-append">
+              <button class="btn-outline-secondary btn btn-info " type="button" (click)="retrieveTutorials()">
+                Search
+              </button>
+              </div>
+            </div>
+            <!-- <input type="text" class="form-control from-search" placeholder="Search Courses" [(ngModel)]="title"
+              required="required">  -->
+            <!-- <div class="input-group-append">
+              <button class="btn-outline-secondary btn btn-info " type="button" (click)="retrieveTutorials()" style="height: 36px;margin-top: 40px;">
+                Search
+              </button>
+            </div>  -->
+          
+          <li class="list-group-item task-list-item" *ngFor="
+          let tutorial of tutorials | paginate : {
+            itemsPerPage: pageSize,
+            currentPage: page,
+            totalItems: count
+          }; 
+          let i = index" [class.active]="i == currentIndex" (click)="setActiveTutorial(tutorial, i)">
+            {{ tutorial.title }}
+            <div class="btn-gr">
+              <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-outline-warning" style="margin-right:5px">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
+              <!-- <button type="button"  routerLink="/tutorials/{{ currentTutorial.id }}">
+                
+              </button> -->
+              <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-danger">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+
+            </div>
+          </li>
+          <!--Modal Delete-->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Are you sure delete ?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button class="btn btn-danger" data-dismiss="modal" (click)="deleteTutorial()">
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ul>
+        <div class="btngrr">
+        </div>
+        <div class="col-md-12 paginationss ">
+          <pagination-controls previousLabel="Prev"  class="" nextLabel="Next" [responsive]="true"
+            (pageChange)="handlePageChange($event)">
+          </pagination-controls>
+        </div>
+        <div class="btn-footer">
+          <button type="button" class="btn btn-danger btn_Remove" data-toggle="modal" data-target="#removeAll">Remove
+            All</button>
+          <!-- <button type="button" class="badge m-3 badge-danger btnremove" data-toggle="modal" data-target="#removeAll">
+          Remove All
+        </button> -->
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createPostModal">Add
+            Course</button>
+          <!-- <button type="button" class="badge m-3 badge-success btnadd" data-toggle="modal" data-target="#createPostModal">
+          Add Course
+        </button> -->
+
+
+        </div>
+
+        <!--  <select (change)="handlePageSizeChange($event)">
+          <option *ngFor="let size of pageSizes" [ngValue]="size">
+            {{ size }}
+          </option>
+        </select> -->
+
+      </div>
+    </div>
+
+    <!--Modal removeAll-->
+    <div class="modal fade" id="removeAll" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Remove All</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Are you sure remove all ?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal"
+              (click)="removeAllTutorials()">Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- create post modal -->
+
+    <div class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <form *ngIf="!submitted" #frAdd="ngForm" (ngSubmit)="onSubmitForm(frAdd)" autocomplete="false" novalidate>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Course</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="modal-body">
+              <div class="form-floating mb-3">
+                <label for="title">Name Course</label>
+                <input type="text" class="form-control" id="title" required minlength="3" maxlength="60"
+                  [(ngModel)]="tutorial.title" name="title" #title="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="title.dirty && title.errors">Name course invalid </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="title">Image Course</label>
+                <input type="text" class="form-control" id="image" required 
+                  [(ngModel)]="tutorial.image" name="image" #image="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="image.dirty && image.errors">Name course invalid </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="title">Video Course</label>
+                <input type="text" class="form-control" id="videoid" required 
+                  [(ngModel)]="tutorial.videoid" name="videoid" #videoid="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="videoid.dirty && videoid.errors">Name course invalid </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="title"> Teacher </label>
+                <input type="text" class="form-control" id="teacher" required minlength="3" maxlength="30"
+                  [(ngModel)]="tutorial.teacher" name="teacher" #teacher="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="teacher.dirty && teacher.errors">Name course invalid </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="title">Price Course</label>
+                <input type="text" class="form-control" id="price" required
+                  [(ngModel)]="tutorial.price" name="price" #price="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="price.dirty && price.errors">Name course invalid </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="title">Category Course</label>
+                <select id="inputGroupSelect02" type="text" class="form-control custom-select" id="category" required
+                [(ngModel)]="tutorial.category" name="category" #category="ngModel">
+                  <option selected>Choose...</option>
+                  <option value="IT">IT</option>
+                  <option value="English">English</option>
+                  <option value="Match">Match</option>
+                </select>
+              <!--  <span for="" class="lable lable-danger" *ngIf="category.dirty && category.errors">Name course invalid </span>
+                <input type="text" class="form-control" id="category" required
+                  [(ngModel)]="tutorial.category" name="category" #category="ngModel" />-->
+              </div> 
+              <div class="form-floating mb-3">
+                <label for="title">Language Course</label>
+                <input type="text" class="form-control" id="language" required
+                  [(ngModel)]="tutorial.language" name="language" #language="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="language.dirty && language.errors">Name course invalid </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="title">Time Course</label>
+                <input type="text" class="form-control" id="time" required
+                  [(ngModel)]="tutorial.time" name="time" #time="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="time.dirty && time.errors">Name course invalid </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="title">Numer Course</label>
+                <input type="text" class="form-control" id="number" required
+                  [(ngModel)]="tutorial.number" name="number" #number="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="number.dirty && number.errors">Name course invalid </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="description">Description</label>
+                <textarea class="form-control txtdes" id="description" required minlength="2" maxlength="10000"
+                  [(ngModel)]="tutorial.description" name="description" #description="ngModel"></textarea>
+                <span for="" class="lable lable-danger" *ngIf="description.dirty && description.errors"> Description
+                  invalid</span>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="onResetForm(frAdd)">Reset</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal" [disabled]="frAdd.invalid"
+                (click)="saveTutorial(frAdd)"> Add </button>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!--modal edit-->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <form *ngIf="currentTutorial.id" #frAdd="ngForm" (ngSubmit)="onSubmitForm(frAdd)" autocomplete="false"
+          novalidate>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Course</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="modal-body">
+              <div class="form-floating mb-3">
+                <label for="title">Name Course</label>
+                <input type="text" class="form-control" id="title" required="required"
+                  [(ngModel)]="currentTutorial.title" name="title" #title="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="title.pristine  && title.errors">Name course invalid
+                </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="title">Image Course</label>
+                <input type="text" class="form-control" id="image" required="required"
+                  [(ngModel)]="currentTutorial.image" name="image" #title="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="title.pristine && title.errors">Name course invalid </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="title">Video Course</label>
+                <input type="text" class="form-control" id="videoid" required 
+                  [(ngModel)]="currentTutorial.videoid" name="videoid" #videoid="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="videoid.dirty && videoid.errors">Name course invalid </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="title">Teacher </label>
+                <input type="text" class="form-control" id="teacher" required minlength="3" maxlength="30"
+                  [(ngModel)]="currentTutorial.teacher" name="teacher" #teacher="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="teacher.pristine && teacher.errors">Name course invalid </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="title">Price Course</label>
+                <input type="text" class="form-control" id="price" required
+                  [(ngModel)]="currentTutorial.price" name="price" #price="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="price.pristine && price.errors">Name course invalid </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="title">Category Course</label>
+                <select id="inputGroupSelect02" type="text" class="form-control custom-select" id="category" required
+                [(ngModel)]="currentTutorial.category" name="category" #category="ngModel">
+                  <option selected>Choose...</option>
+                  <option value="IT">IT</option>
+                  <option value="English">English</option>
+                  <option value="Match">Match</option>
+                </select>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="title">Language Course</label>
+                <input type="text" class="form-control" id="language" required
+                  [(ngModel)]="currentTutorial.language" name="language" #language="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="language.dirty && language.errors">Name course invalid </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="title">Time Course</label>
+                <input type="text" class="form-control" id="time" required
+                  [(ngModel)]="currentTutorial.time" name="time" #time="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="time.dirty && time.errors">Name course invalid </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="title">Number Course</label>
+                <input type="text" class="form-control" id="number" required
+                  [(ngModel)]="currentTutorial.number" name="number" #number="ngModel" />
+                <span for="" class="lable lable-danger" *ngIf="number.dirty && number.errors">Name course invalid </span>
+              </div>
+              <div class="form-floating mb-3">
+                <label for="description">Description</label>
+                <textarea class="form-control txtdes" id="description" required minlength="2" 
+                  [(ngModel)]="currentTutorial.description" name="description" #description="ngModel"></textarea>
+                <span for="" class="lable lable-danger" *ngIf="description.pristine  && description.errors"> Description
+                  invalid</span>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="onResetForm(frAdd)">Reset</button>
+              <button type="submit" class="btn btn-success" [disabled]="frAdd.pristine "
+                (click)="updateTutorial(frAdd)">
+                Update
+              </button>
+              <p>{{ message }}</p>
+
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+
+  </header>
+</body>
+
+
+<ng-template #loggedOut>
+  Please login.
+</ng-template>

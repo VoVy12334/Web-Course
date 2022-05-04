@@ -1,0 +1,110 @@
+.edit-form {
+  max-width: 400px;
+  margin: auto;
+  margin-top: 80px;
+  background-color: #FFFFFF;
+  border-radius: 25px;
+}
+
+
+
+body {
+
+  font-family: "Lato", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: normal;
+  color: rgb(14, 13, 13);
+
+}
+
+.form-control {
+  box-sizing: border-box;
+  /* position: absolute; */
+
+  /* box-sizing: border-box; */
+  /* width: 0px; */
+  height: 50px;
+  padding: 0 20px;
+  outline: none;
+  font-size: 18px;
+  border-radius: 50px;
+  color: #29313a;
+  border: 3px solid #03a9f452;
+  transition: all 0.8s ease;
+}
+
+
+header {
+  background-image: url(https://cdn.pixabay.com/photo/2018/05/28/06/00/whitespace-3435355_960_720.jpg);
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  z-index: 0;
+  padding: 0;
+  margin: 0;
+}
+
+header:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  background: #000;
+  opacity: .3;
+  z-index: -1;
+}
+
+label {
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: left;
+  font-weight: 700;
+}
+
+h3 {
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bolder;
+  text-transform: uppercase;
+  color: black;
+
+}
+
+.badge {
+  font-weight: 100% !important;
+}
+
+.badge-success {
+  margin-left: 80px;
+}
+
+.badge-danger {
+  margin-left: 40px;
+  background-color: black;
+}
+
+.btndescr {
+  border-radius: 0% !important;
+  height: 80px !important;
+}
+
+.btnUp {
+  color: #fff;
+  font-weight: 600;
+  background-color: #1e86bd;
+  height: 41px;
+  width: 71px;
+}
+
+.btnback {
+  color: #fff;
+  font-weight: 600;
+  background-color: black;
+  height: 41px;
+  width: 71px;
+}

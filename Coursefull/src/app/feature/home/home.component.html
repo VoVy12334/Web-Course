@@ -1,0 +1,222 @@
+<body>
+  <div class="container-fuild">
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <a
+          href="https://intellipaat.com/blog/tutorial/angularjs-tutorial/">
+           <img src="https://i.ytimg.com/vi/cZ7Ib8NA6Sg/maxresdefault.jpg" class="d-block w-100" style="height: 500px;"
+            alt="..."></a>
+        
+        </div>
+        <div class="carousel-item">
+          <a
+          href="https://fullstack.edu.vn/blog/cac-nguon-tai-nguyen-huu-ich-cho-1-front-end-developer.html"
+         >  <img src="https://plopdo.com/wp-content/uploads/2021/07/Screenshot-1-1210x642.png?crop=1"
+            style="height: 500px;" class="d-block w-100" alt="..."></a>
+         
+        </div>
+        <div class="carousel-item">
+          <a href="https://tmarketing.vn/front-end-back-end-fullstack-la-gi/"
+          >  <img src="https://tmarketing.vn/wp-content/uploads/2021/09/Copy-of-Untitled-2-min.png" style="height: 500px;"
+            class="d-block w-100" alt="..."> </a>
+        
+        </div>
+      </div>
+    </div>
+
+    <h3 class="h3title">Featured Courses</h3>
+    <div class="container_1">
+      <span class="spantitle">Discover this week's top/most searched skills and start your learning today!</span>
+      <!-- <a href="/login" routerLink="/login" style="color: orangered; display: flex;
+        justify-content: flex-end; margin-right: 10px; font-weight: bold;" *ngIf="!isLoggedIn">SignIn/SignUp</a> -->
+      <button type="button" class="btn btn-info" href="/login" routerLink="/login" style="margin-right:31px"
+        *ngIf="!isLoggedIn">SignIn/SignUp</button>
+
+    </div>
+    <div class="cardid">
+      <div class="row row-cols-1 row-cols-md-3" routerLinkActive="active">
+        <div class="col mb-4" *ngFor="
+          let tutorial of tutorials | paginate : {
+            itemsPerPage: pageSize,
+            currentPage: page,
+            totalItems: count
+          }; 
+         let i = index" [class.active]="i == currentIndex" (click)="setActiveTutorial(tutorial, i)
+          ">
+          <div class="card-deck">
+
+            <div class="card CommonItem_thumb__ew8Jj ">
+
+              <img src="{{tutorial.image}}" style="height: 222px;" class="card-img-top" alt="...">
+
+              <div class="card-body">
+                <h5 class="card-title">{{tutorial.title}}</h5>
+                <p class="card-text">{{tutorial.price}}</p>
+              </div>
+              <div class="card-footer">
+                <button type="button" class="btn btn-outline-primary" routerLink="/feature/user/{{currentTutorial.id}}">
+                  Detail
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 paginationss " style="margin-left:-65px !important">
+        <pagination-controls previousLabel="Prev" class="" nextLabel="Next" [responsive]="true" 
+          (pageChange)="handlePageChange($event)">
+        </pagination-controls>
+      </div>
+    </div>
+    <h3 class="h3title">Newspapers</h3>
+    <span class="spantitle">Discover this week's top/most searched skills and start your learning today!</span>
+    <div class="cardid">
+      <div class="card-deck">
+        <div class="card CommonItem_thumb__ew8Jj">
+          <img class="card-img-top" style="height: 222px;"
+            src="https://files.fullstack.edu.vn/f8-prod/blog_posts/107/613a1e8d8fc47.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Newspaper</h5>
+            <p class="card-text">Useful resources for a front-end developer</p>
+            <a class="card-text card-link"
+              href="https://fullstack.edu.vn/blog/cac-nguon-tai-nguyen-huu-ich-cho-1-front-end-developer.html"><small
+                class="">Access</small></a>
+          </div>
+        </div>
+        <div class="card CommonItem_thumb__ew8Jj">
+          <img class="card-img-top" style="height: 222px;"
+            src="https://files.fullstack.edu.vn/f8-prod/blog_posts/791/615ddae5c5b7d.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Newspaper</h5>
+            <p class="card-text">What is the right way to learn?</p>
+            <a class="card-text card-link" href="https://fullstack.edu.vn/blog/hoc-nhu-the-nao-la-phu-hop.html"><small
+                class="">Access</small></a>
+          </div>
+        </div>
+        <div class="card CommonItem_thumb__ew8Jj">
+          <img class="card-img-top" style="height: 222px;"
+            src="https://files.fullstack.edu.vn/f8-prod/blog_posts/677/615424715714d.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Newspaper</h5>
+            <p class="card-text">How to put code on and create GitHub.</p>
+            <a class="card-text card-link"
+              href="https://fullstack.edu.vn/blog/cach-dua-code-len-github-va-tao-github-pages.html"><small
+                class="">Access</small></a>
+
+          </div>
+        </div>
+        <div class="card CommonItem_thumb__ew8Jj">
+          <img class="card-img-top" style="height: 222px;"
+            src="https://files.fullstack.edu.vn/f8-prod/blog_posts/273/6140216120a71.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Newspaper</h5>
+            <p class="card-text">Summary of English self-study materials.</p>
+            <a class="card-text card-link"
+              href="https://fullstack.edu.vn/blog/tong-hop-tai-lieu-tu-hoc-tieng-anh-co-ban.html"><small
+                class="">Access</small></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="Footer_wrapper__RAsdB">
+      <section class="index-module_grid__1q71E index-module_wide__3c1pI" style="max-width: 1100px;">
+        <section class="index-module_row__-AHgh" style="margin: 0; display: flex; justify-content: space-between;">
+          <section
+            class="index-module_col__2EQm9 index-module_c-12__u7UXF index-module_m-6__30cxf index-module_l-3__MjWvb"
+            style="width: 40%;">
+            <div class="Footer_column__Jllii">
+              <div>
+                <div class="Footer_column-top__2kQ8J">
+                  <a href="/"><img class="Footer_top-logo__2i6Rn"
+                      src="https://static.fullstack.edu.vn/static/media/f8-icon.7ad2b161d5e80c87e516.png" alt="F8"></a>
+                  <h2 class="Footer_top-slogan__yvaAt">Learn programming</h2>
+                </div>
+                <ul class="Footer_list__pNU8w">
+                  <li>Phone: <a href="tel:0246.329.1102">0246.329.1102</a></li>
+                  <li>Email: <a href="votuongvy654@gmail.com">votuongvy654@gmail.com</a></li>
+                  <li>Address: Quy Nhơn, Bình Định</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <section
+            class="index-module_col__2EQm9 index-module_c-12__u7UXF index-module_m-6__30cxf index-module_l-3__MjWvb"
+            style="width: 30%;">
+            <div class="Footer_column__Jllii">
+              <div>
+                <h2 class="Footer_heading__JLn-b">About programming</h2>
+                <ul class="Footer_list__pNU8w">
+                  <li><a href="/about-us">Courses</a></li>
+                  <li><a href="/careers">Free</a></li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <section
+            class="index-module_col__2EQm9 index-module_c-12__u7UXF index-module_m-6__30cxf index-module_l-3__MjWvb"
+            style="width: 30%;">
+            <div class="Footer_column__Jllii">
+              <div>
+                <h2 class="Footer_heading__JLn-b">Support</h2>
+                <ul class="Footer_list__pNU8w">
+                  <li><a href="/contact-us">Contact</a></li>
+                  <li><a href="/privacy">Security</a></li>
+                  <li><a href="/terms">Rules</a></li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section class="index-module_row__-AHgh">
+          <section
+            class="index-module_col__2EQm9 index-module_c-12__u7UXF index-module_m-12__2CxUL index-module_l-12__340Ve">
+            <div class="Footer_bottom__J7kjW">
+              <p class="Footer_copyright__2WB24">© 2022 Vy - Việt Nam Muôn Năm!</p>
+            </div>
+          </section>
+        </section>
+      </section>
+    </footer>
+  </div>
+</body>
+
+
+
+<!--
+<div>
+    <div class="row mt-5 p-3">
+      <div class="col-sm-12 col-md-3 mt-3" *ngFor="
+      let tutorial of tutorials | paginate : {
+        itemsPerPage: pageSize,
+        currentPage: page,
+        totalItems: count
+      };  ">
+
+          <div class="card">
+              <div class="card-body">
+                <img src="{{tutorial.image}}" style="height: 222px;" class="card-img-top" alt="...">
+                  <h5 class="card-title">{{tutorial.title}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{tutorial.description}}</h6>
+                  <p class="card-text">{{tutorial.price}}</p>
+              </div>
+              <div class="card-footer">
+                  <div class="btn btn-outline-primary ms-2"  data-bs-toggle="modal"
+                      data-bs-target="#editPostModal">Edit </div>
+                  <div class="btn btn-outline-danger ms-2" >Delete </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-12 paginationss ">
+    <pagination-controls previousLabel="Prev"  class="" nextLabel="Next" [responsive]="true"
+      (pageChange)="handlePageChange($event)">
+    </pagination-controls>
+  </div>
+</div> -->

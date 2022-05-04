@@ -1,0 +1,113 @@
+.navbar-brand {
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #000;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    
+    text-transform: uppercase;
+    color: #000;
+    font-weight:500;
+}
+
+@media (min-width: 992px)
+{
+    .navbar-expand-lg {
+        background: whitesmoke;
+   
+}}
+
+.navbar-expand-lg{
+    background-color: whitesmoke;
+}
+
+#footer{
+    padding: 64px 16px;
+    text-align: center;
+}
+
+#footer .social-list{
+    font-size: 24px;
+}
+
+#footer .social-list a{
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none; /*bỏ dấu gạch chân*/
+
+}
+
+#footer .social-list a:hover{
+    color: rgba(0, 0, 0, 0.3);
+
+}
+
+#footer .copyright{
+    margin-top: 15;
+    color: rgba(0, 0, 0, 0.6);
+
+}
+
+#footer .copyright a{
+    color: rgba(0, 0, 0, 0.6);
+
+}
+#footer .copyright a:hover{
+    color: rgba(0, 0, 0, 0.3);
+
+}
+.Footer_social-item__GydUc.Footer_tiktok__OiXpU {
+    color: #ccc;
+}
+.Footer_social-item__GydUc.Footer_facebook__9kuWE {
+    color: #4867aa;
+}
+.Footer_list__pNU8w li {
+    font-size: 1.2rem;
+    line-height: 2.2rem;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.Footer_heading__JLn-b {
+    color: #fff;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-transform: uppercase;
+}
+
+.Footer_list__pNU8w {
+    padding-left: 0;
+}
+
+.Footer_dmca__70ZIa {
+    margin-top: 20px;
+}
+
+
+.index-module_l-3__MjWvb {
+    width: 25%;
+}
+
+.index-module_l-3__MjWvb{
+    display: block;
+}
+
+.index-module_col__2EQm9 {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.index-module_m-6__30cxf {
+    width: 50%;
+}
+
+.Footer_column__Jllii {
+    display: flex;
+    justify-content: center;
+}
+
+.ytbfr{
+    max-width: 100%;
+}
